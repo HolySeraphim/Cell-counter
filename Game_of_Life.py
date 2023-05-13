@@ -2,7 +2,7 @@ from file_manager import *
 from PIL import Image
 import numpy as np
 from multiprocessing import Process
-import matplotlib.pyplot as plt
+
 #constants:
 choicer = [True, False, False, False, False, False, False, False, True]
 blocksize = 3
