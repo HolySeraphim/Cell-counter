@@ -43,28 +43,28 @@ def preprocess(tflevel):
         if flag: break
 
     # show result:
-    # oim = Image.fromarray(im)
-    # oim.show()
+    oim = Image.fromarray(im)
+    oim.show()
     print(im.sum(), blocksize, tflevel)
     return tflevel, blocksize, im.sum()
 
 if __name__ == '__main__':
     # open file and convert to array:
     io = Image.open(
-        'C:/Users/palpa/Desktop/Death/MIPT/ICT/Algorithms_bioinformatics/Cell_counter/tryphoto/Fluorescent-E.-coli.tif')  # get_dir_path(DirPathMode.File, title='Open image')
+        'tryphoto/New/Fluorescent-E.-coli.tif')  # get_dir_path(DirPathMode.File, title='Open image')
     io = io.convert("L")
     io = np.array(io)
 
     # show result:
-    # oim = Image.fromarray(io)
-    # oim.show()
+    oim = Image.fromarray(io)
+    oim.show()
     args = []
     for blocksize in range(1,11):
         for tfleveliter in range(0,20):
             tflevel = tfleveliter * 0.05
 
             args.append([tflevel, blocksize, io.copy()])
-
+    args = [[0.5, 4, io.copy()]]
 
     def processing(args):
         p = []
