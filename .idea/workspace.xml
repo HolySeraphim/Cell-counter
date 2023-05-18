@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d79043f-b4a6-4266-8042-a13af0a82bfe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Cell-counter-clone.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Keras_frcnn/config.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game_of_Life.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game_of_Life.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/annot.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/annot.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/RoiPoolingConv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/RoiPoolingConv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/losses.py" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/losses.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/resnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/roi_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/roi_helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/vgg.py" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/keras_frcnn/vgg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Keras_frcnn/train_frcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/Keras_frcnn/train_frcnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Opencv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Opencv.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.pickle" beforeDir="false" />
-    </list>
+    <list default="true" id="7d79043f-b4a6-4266-8042-a13af0a82bfe" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,7 +98,7 @@
       <workItem from="1684266150603" duration="4280000" />
       <workItem from="1684415249989" duration="7722000" />
       <workItem from="1684443092961" duration="1315000" />
-      <workItem from="1684444919680" duration="4601000" />
+      <workItem from="1684444919680" duration="4763000" />
     </task>
     <servers />
   </component>
