@@ -3,11 +3,12 @@ from PIL import Image
 import numpy as np
 from multiprocessing import Process
 
-#constants:
+#  constants:
 choicer = [True, False, False, False, False, False, False, False, True]
 blocksize = 3
-tflevel = 0.8
-answers = np.zeros((10,20))
+tflevel = 0.5
+answers = np.zeros((10, 20))
+
 
 def preprocess(tflevel):
     io = tflevel[2]
@@ -44,27 +45,27 @@ def preprocess(tflevel):
 
     # show result:
     oim = Image.fromarray(im)
-    oim.show()
+    # oim.show()
     print(im.sum(), blocksize, tflevel)
     return tflevel, blocksize, im.sum()
 
+
 if __name__ == '__main__':
     # open file and convert to array:
-    io = Image.open(
-        'tryphoto/New/Fluorescent-E.-coli.tif')  # get_dir_path(DirPathMode.File, title='Open image')
+    io = Image.open(get_dir_path(DirPathMode.File, title='Open image'))
     io = io.convert("L")
     io = np.array(io)
 
     # show result:
     oim = Image.fromarray(io)
-    oim.show()
+    # oim.show()
     args = []
     for blocksize in range(1,11):
         for tfleveliter in range(0,20):
             tflevel = tfleveliter * 0.05
 
             args.append([tflevel, blocksize, io.copy()])
-    args = [[0.5, 4, io.copy()]]
+    args = [[0.5, 3, io.copy()]]
 
     def processing(args):
         p = []

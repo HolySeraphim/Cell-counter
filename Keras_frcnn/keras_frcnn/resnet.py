@@ -13,11 +13,11 @@ from keras.layers import Input, Add, Dense, Activation, Flatten, Convolution2D, 
 
 from keras import backend as K
 
-from keras_frcnn.RoiPoolingConv import RoiPoolingConv
-from keras_frcnn.FixedBatchNormalization import FixedBatchNormalization
+from Keras_frcnn.keras_frcnn.RoiPoolingConv import RoiPoolingConv
+from Keras_frcnn.keras_frcnn.FixedBatchNormalization import FixedBatchNormalization
 
 def get_weight_path():
-    if K.image_data_format() == 'th':
+    if K.image_data_format() == 'channels_first':
         return 'resnet50_weights_th_dim_ordering_th_kernels_notop.h5'
     else:
         return 'resnet50_weights_tf_dim_ordering_tf_kernels.h5'
@@ -39,10 +39,10 @@ def identity_block(input_tensor, kernel_size, filters, stage, block, trainable=T
 
     nb_filter1, nb_filter2, nb_filter3 = filters
     
-    if K.image_data_format() == 'tf':
-        bn_axis = 3
-    else:
+    if K.image_data_format() == 'channels_first':
         bn_axis = 1
+    else:
+        bn_axis = 3
 
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
@@ -68,10 +68,10 @@ def identity_block_td(input_tensor, kernel_size, filters, stage, block, trainabl
     # identity block time distributed
 
     nb_filter1, nb_filter2, nb_filter3 = filters
-    if K.image_data_format() == 'tf':
-        bn_axis = 3
-    else:
+    if K.image_data_format() == 'channels_first':
         bn_axis = 1
+    else:
+        bn_axis = 3
 
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
@@ -95,10 +95,10 @@ def identity_block_td(input_tensor, kernel_size, filters, stage, block, trainabl
 def conv_block(input_tensor, kernel_size, filters, stage, block, strides=(2, 2), trainable=True):
 
     nb_filter1, nb_filter2, nb_filter3 = filters
-    if K.image_data_format() == 'tf':
-        bn_axis = 3
-    else:
+    if K.image_data_format() == 'channels_first':
         bn_axis = 1
+    else:
+        bn_axis = 3
 
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
@@ -127,10 +127,10 @@ def conv_block_td(input_tensor, kernel_size, filters, stage, block, input_shape,
     # conv block time distributed
 
     nb_filter1, nb_filter2, nb_filter3 = filters
-    if K.image_data_format() == 'tf':
-        bn_axis = 3
-    else:
+    if K.image_data_format() == 'channels_first':
         bn_axis = 1
+    else:
+        bn_axis = 3
 
     conv_name_base = 'res' + str(stage) + block + '_branch'
     bn_name_base = 'bn' + str(stage) + block + '_branch'
@@ -156,7 +156,7 @@ def conv_block_td(input_tensor, kernel_size, filters, stage, block, input_shape,
 def nn_base(input_tensor=None, trainable=False):
 
     # Determine proper input shape
-    if K.image_data_format() == 'th':
+    if K.image_data_format() == 'channels_first':
         input_shape = (3, None, None)
     else:
         input_shape = (None, None, 3)
@@ -169,10 +169,10 @@ def nn_base(input_tensor=None, trainable=False):
         else:
             img_input = input_tensor
 
-    if K.image_data_format() == 'tf':
-        bn_axis = 3
-    else:
+    if K.image_data_format() == 'channels_first':
         bn_axis = 1
+    else:
+        bn_axis = 3
 
     x = ZeroPadding2D((3, 3))(img_input)
 
@@ -231,10 +231,14 @@ def classifier(base_layers, input_rois, num_rois, nb_classes = 21, trainable=Fal
 
     if K.backend() == 'tensorflow':
         pooling_regions = 14
-        input_shape = (num_rois,14,14,1024)
+        input_shape = (num_rois, 14, 14, 1024)
     elif K.backend() == 'theano':
         pooling_regions = 7
-        input_shape = (num_rois,1024,7,7)
+        input_shape = (num_rois, 1024, 7, 7)
+    else:
+        print('ERROR resnet')
+        pooling_regions = 0
+        input_shape = 0
 
     out_roi_pool = RoiPoolingConv(pooling_regions, num_rois)([base_layers, input_rois])
     out = classifier_layers(out_roi_pool, input_shape=input_shape, trainable=True)

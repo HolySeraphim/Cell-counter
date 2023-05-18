@@ -99,7 +99,7 @@ print(f'Num classes (including bg) = {len(classes_count)}')
 config_output_filename = options.config_filename
 
 with open(config_output_filename, 'wb') as config_f:
-	pickle.dump(C,config_f)
+	pickle.dump(C, config_f)
 	print(f'Config has been written to {config_output_filename}, and can be loaded when testing to ensure correct results')
 
 random.shuffle(train_imgs)
@@ -116,7 +116,7 @@ print(f'Num val samples {len(val_imgs)}')
 data_gen_train = data_generators.get_anchor_gt(train_imgs, classes_count, C, nn.get_img_output_length, K.image_data_format(), mode='train')
 data_gen_val = data_generators.get_anchor_gt(val_imgs, classes_count, C, nn.get_img_output_length,K.image_data_format(), mode='val')
 print(K.image_data_format())
-if K.image_data_format() == 'th':
+if K.image_data_format() == 'channels_first':
 	input_shape_img = (3, None, None)
 else:
 	input_shape_img = (None, None, 3)
@@ -124,7 +124,6 @@ else:
 print(f'{input_shape_img=}')
 img_input = Input(shape=input_shape_img)
 roi_input = Input(shape=(None, 4))
-
 # define the base network (resnet here, can be VGG, Inception, etc)
 shared_layers = nn.nn_base(img_input, trainable=True)
 

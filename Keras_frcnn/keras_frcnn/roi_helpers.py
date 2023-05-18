@@ -227,6 +227,10 @@ def rpn_to_roi(rpn_layer, regr_layer, C, dim_ordering, use_regr=True, max_boxes=
 	anchor_sizes = C.anchor_box_scales
 	anchor_ratios = C.anchor_box_ratios
 
+	TMP = {'channels_first': 'tf',
+		   'channels_last': 'th'}
+	dim_ordering = TMP[dim_ordering]
+
 	assert rpn_layer.shape[0] == 1
 
 	if dim_ordering == 'th':

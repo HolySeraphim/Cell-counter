@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import cvlib
 from cvlib.object_detection import draw_bbox
 
-image = cv2.imread("tryphoto/New/Fluorescent-E.-coli.tif")
-box, label, count = cvlib.detect_common_objects(image)
+image = cv2.imread("tryphoto\\New\\Fluorescent-E.-coli.tif")
+box, label, count = cvlib.detect_common_objects(image, enable_gpu=True)
 output = draw_bbox(image, box, label, count)
 print(label)
 print(f"Количество объектов на картинке: {label.count('person')}")
